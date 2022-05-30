@@ -6,6 +6,7 @@ use App\Models\BlogPost;
 use App\Models\Comment;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Auth;
 use Tests\TestCase;
 
 class PostTest extends TestCase
@@ -43,6 +44,7 @@ class PostTest extends TestCase
 
     public function testStoreValid()
     {
+        $this->actingAs($this->user());
 
         $params = [
           'title'=>'Valid title222',
@@ -57,6 +59,8 @@ class PostTest extends TestCase
 
    public function testStoreFail()
     {
+        $this->actingAs($this->user());
+
         $params = [
             'title'=>'Text',
             'content'=>'Text',
@@ -75,7 +79,9 @@ class PostTest extends TestCase
     }
 
    public function testUpdateValid(){
-        //Arrange
+       $this->actingAs($this->user());
+
+       //Arrange
         $post = $this->createDummyBlogPost();
         $this->assertDatabaseHas('blog_posts',['title'=>'New title 1']);
         $params = [
@@ -95,6 +101,7 @@ class PostTest extends TestCase
 
 
     public function testDelete(){
+        $this->actingAs($this->user());
 
         //Arrange
         $post = $this->createDummyBlogPost();
