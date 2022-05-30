@@ -6,6 +6,8 @@ use App\Models\BlogPost;
 use App\Http\Requests\StorePost;
 use App\Models\Comment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 //use Illuminate\Support\Facades\DB;
 
 class PostsController extends Controller
