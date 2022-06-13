@@ -10,6 +10,7 @@
     <p>No comments yet!</p>
 @endif
 
+{{--@if(auth()->user()->id == $post->user_id)--}}
 <div class="md-3">
     <a href="{{route('posts.edit', ['post'=>$post->id])}}" class="btn btn-primary">Edit</a>
     <form class="d-inline" method="POST" action="{{route('posts.destroy', ['post'=>$post->id])}}">
@@ -20,4 +21,5 @@
 
     </form>
 </div>
+{{--@endif--}}
 
