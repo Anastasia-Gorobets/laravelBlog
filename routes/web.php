@@ -22,10 +22,8 @@ Route::get('/', function () {
 })->name('home.index');
 
 
-Route::get('/contact', function () {
-    return view("contact");
-})->name('home.contact');
-
+Route::get('/contact',  'HomeController@contact')->name('contact');
+Route::get('/secret',  'HomeController@secret')->name('secret')->middleware('can:home.secret');
 
 
 
@@ -86,7 +84,7 @@ Route::get('/posts', function () use ($posts){
 });*/
 
 
-Route::resource('posts',PostsController::class);
+Route::resource('posts','PostsController');
 
 
 
@@ -97,7 +95,7 @@ Route::resource('posts',PostsController::class);
 });*/
 
 
-
+/*
 Route::prefix('/fun')->name('fun.')->group(function () use ($posts){
 
 
@@ -139,7 +137,7 @@ Route::prefix('/fun')->name('fun.')->group(function () use ($posts){
 
 
 
-});
+});*/
 
 /*
 Route::get('/home', function () {
@@ -151,7 +149,6 @@ Route::view('/contact','contact')->name('contact');;*/
 
 Route::get('/home', [HomeController::class, 'home']);
 /*Route::get('/contact', [HomeController::class, 'contact']);*/
-Route::get('/single', AboutController::class);
 
 /*Route::get('/contact', function () {
     return view("contact");
@@ -164,4 +161,4 @@ Route::get('/test', function (){
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+/*Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');*/

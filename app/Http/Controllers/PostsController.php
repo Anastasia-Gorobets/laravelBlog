@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\BlogPost;
 use App\Http\Requests\StorePost;
 use App\Models\Comment;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
@@ -44,8 +45,13 @@ class PostsController extends Controller
       //  Comment::factory()->count(1)->create(['blog_post_id'=>1]);
 
 
+
+
         return view("posts.index", [
-            'posts'=>BlogPost::withCount('comments')->get()
+            'posts'=>BlogPost::latestPosts()->withCount('comments')->get(),
+            'mostCommented'=>BlogPost::mostCommented()->take(5)->get(),
+            'mostActiveUsers'=>User::withMostBlogPosts()->take(5)->get(),
+            'mostActiveUsersLastMonth'=>User::withMostBlogPostsLastMonth()->take(5)->get(),
         ]);
     }
 
@@ -74,6 +80,8 @@ class PostsController extends Controller
         ]);*/
 
         $validated = $request->validated();
+        $validated['user_id'] = $request->user()->id;
+
 
         //$post = new BlogPost();
      /*   $post->title = $request->input('title');
@@ -116,7 +124,7 @@ class PostsController extends Controller
     {
         $post = BlogPost::findOrFail($id);
 
-        $this->authorize('update-post',$post);
+        $this->authorize($post);
 
         return view('posts.edit',['post'=>$post]);
     }
@@ -136,7 +144,7 @@ class PostsController extends Controller
           abort(403, "You can't edit this post!");
         }*/
 
-        $this->authorize('update-post',$post);
+        $this->authorize($post);
 
         $validated = $request->validated();
         $post->fill($validated);
@@ -157,7 +165,7 @@ class PostsController extends Controller
     {
         $post = BlogPost::findOrFail($id);
 
-        $this->authorize('update_post',$post);
+        $this->authorize($post);
 
         $post->delete();
         session()->flash('status','Blog post was deleted');

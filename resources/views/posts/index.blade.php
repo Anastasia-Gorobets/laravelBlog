@@ -3,23 +3,144 @@
 @section('title','All posts')
 
 @section('content')
-   {{-- @if(count($posts))
-    @foreach($posts as $post)
-    <h1>{{$post['title']}}</h1>
-    @endforeach
-    @else
-        No posts
-    @endif--}}
+
+    <div class="row">
+
+        <div class="col-8">
+            @forelse($posts as $key => $post)
+                @include('posts.partials.post')
+            @empty
+                No posts
+            @endforelse
+        </div>
+
+        <div class="col-4">
+
+            <div class="container">
+
+                <div class="row">
+
+                    <div class="card" style="width: 100%">
+
+                        <div class="card-body">
+
+                            <div class="card-title">
+                                Most commented
+                            </div>
+
+                            <div class="card-subtitle mb-2 text-muted">
+                                <h6>What people talking about</h6>
+                            </div>
+
+                            <ul class="list-group list-group-flush">
+
+                                @foreach($mostCommented as $post)
+                                    <li class="list-group-item">
+
+                                        <a href="{{route('posts.show',['post'=>$post->id])}}">{{$post->title}}</a>
+
+                                    </li>
 
 
-  {{-- @each('posts.partials.post', $posts, 'post')--}}
+                                @endforeach
 
-   @forelse($posts as $key => $post)
-       @include('posts.partials.post')
-    @empty
-        No posts
-    @endforelse
 
- {{--   @php $test = 'Test text' @endphp
-    <h1>{{$test}}</h1>--}}
+
+                            </ul>
+
+
+
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+
+                    <div class="card" style="width: 100%">
+
+                        <div class="card-body">
+
+                            <div class="card-title">
+                                Most active users
+                            </div>
+
+                            <div class="card-subtitle mb-2 text-muted">
+                                <h6>Users with most posts written</h6>
+                            </div>
+
+                            <ul class="list-group list-group-flush">
+
+                                @foreach($mostActiveUsers as $user)
+                                    <li class="list-group-item">
+
+                                        {{$user->name}}
+
+                                    </li>
+
+
+                                @endforeach
+
+
+
+                            </ul>
+
+
+
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+                <div class="row mt-4">
+
+                    <div class="card" style="width: 100%">
+
+                        <div class="card-body">
+
+                            <div class="card-title">
+                                Most active users in last month
+                            </div>
+
+                            <div class="card-subtitle mb-2 text-muted">
+                                <h6>Users with most posts written in the last month</h6>
+                            </div>
+
+                            <ul class="list-group list-group-flush">
+
+                                @foreach($mostActiveUsersLastMonth as $user)
+                                    <li class="list-group-item">
+
+                                        {{$user->name}}
+
+                                    </li>
+
+
+                                @endforeach
+
+
+
+                            </ul>
+
+
+
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+
+
+
+            </div>
+        </div>
+
+
+    </div>
 @endsection
