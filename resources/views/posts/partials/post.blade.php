@@ -1,6 +1,3 @@
-{{--@break($key == 2)--}}
-{{-- @continue($key == 1)--}}
-
 <h3>
     @if($post->trashed())
         <del>
@@ -14,7 +11,8 @@
 @updated(['date'=>$post->created_at,'name'=>$post->user->name])
 @endupdated
 
-
+@tags(['tags'=>$post->tags])
+@endtags
 
 @if($post->comments_count)
     <p>{{$post->comments_count}} comments</p>
@@ -22,14 +20,11 @@
     <p>No comments yet!</p>
 @endif
 
-{{--@if(auth()->user()->id == $post->user_id)--}}
 <div class="md-3">
-
         @auth
             @can('update',$post)
                 <a href="{{route('posts.edit', ['post'=>$post->id])}}" class="btn btn-primary">Edit</a>
             @endcan
-
 
             @if(!$post->trashed())
                 @can('delete',$post)
@@ -41,8 +36,4 @@
                 @endcan
              @endif
         @endauth
-
-
 </div>
-{{--@endif--}}
-

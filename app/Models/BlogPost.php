@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Cache;
 
 class BlogPost extends Model
 {
+
     use HasFactory;
 
     use SoftDeletes;
@@ -27,6 +28,12 @@ class BlogPost extends Model
         return $this->belongsTo(User::class);
 
     }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
+
 
     public function scopeLatestPosts(Builder $query)
     {

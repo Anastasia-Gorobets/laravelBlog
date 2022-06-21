@@ -25,6 +25,7 @@ Route::get('/', function () {
 Route::get('/contact',  'HomeController@contact')->name('contact');
 Route::get('/secret',  'HomeController@secret')->name('secret')->middleware('can:home.secret');
 
+Route::get('/posts/tag/{id}',  'PostTagController@index')->name('posts.tags.index');
 
 
 /*Route::get('posts/{post}', function ($slug) {
