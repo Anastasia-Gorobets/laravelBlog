@@ -19,123 +19,40 @@
             <div class="container">
 
                 <div class="row">
+                    @card
+                    @slot('title', 'Most commented')
+                    @slot('subtitle', 'What people talking about')
 
-                    <div class="card" style="width: 100%">
+                    @slot('items')
+                        @foreach($mostCommented as $post)
+                            <li class="list-group-item">
+                                <a href="{{route('posts.show',['post'=>$post->id])}}">{{$post->title}}</a>
+                            </li>
+                        @endforeach
+                    @endslot
 
-                        <div class="card-body">
-
-                            <div class="card-title">
-                                Most commented
-                            </div>
-
-                            <div class="card-subtitle mb-2 text-muted">
-                                <h6>What people talking about</h6>
-                            </div>
-
-                            <ul class="list-group list-group-flush">
-
-                                @foreach($mostCommented as $post)
-                                    <li class="list-group-item">
-
-                                        <a href="{{route('posts.show',['post'=>$post->id])}}">{{$post->title}}</a>
-
-                                    </li>
-
-
-                                @endforeach
-
-
-
-                            </ul>
-
-
-
-                        </div>
-
-
-
-                    </div>
+                    @endcard
                 </div>
 
                 <div class="row mt-4">
 
-                    <div class="card" style="width: 100%">
+                    @card
+                    @slot('title', 'Most active users')
+                    @slot('subtitle', 'Users with most posts written')
+                    @slot('items', collect($mostActiveUsers)->pluck('name'))
+                    @endcard
 
-                        <div class="card-body">
-
-                            <div class="card-title">
-                                Most active users
-                            </div>
-
-                            <div class="card-subtitle mb-2 text-muted">
-                                <h6>Users with most posts written</h6>
-                            </div>
-
-                            <ul class="list-group list-group-flush">
-
-                                @foreach($mostActiveUsers as $user)
-                                    <li class="list-group-item">
-
-                                        {{$user->name}}
-
-                                    </li>
-
-
-                                @endforeach
-
-
-
-                            </ul>
-
-
-
-                        </div>
-
-
-
-                    </div>
                 </div>
 
                 <div class="row mt-4">
 
-                    <div class="card" style="width: 100%">
+                    @card
+                    @slot('title', 'Most active users in last month')
+                    @slot('subtitle', 'Users with most posts written in the last month')
+                    @slot('items', collect($mostActiveUsersLastMonth)->pluck('name'))
+                    @endcard
 
-                        <div class="card-body">
-
-                            <div class="card-title">
-                                Most active users in last month
-                            </div>
-
-                            <div class="card-subtitle mb-2 text-muted">
-                                <h6>Users with most posts written in the last month</h6>
-                            </div>
-
-                            <ul class="list-group list-group-flush">
-
-                                @foreach($mostActiveUsersLastMonth as $user)
-                                    <li class="list-group-item">
-
-                                        {{$user->name}}
-
-                                    </li>
-
-
-                                @endforeach
-
-
-
-                            </ul>
-
-
-
-                        </div>
-
-
-
-                    </div>
                 </div>
-
-
 
 
             </div>

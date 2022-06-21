@@ -11,7 +11,9 @@
     @endif
 </h3>
 
-<p>Added {{ $post->created_at->diffForHumans() }} by {{$post->user->name}}
+@updated(['date'=>$post->created_at,'name'=>$post->user->name])
+@endupdated
+
 
 
 @if($post->comments_count)
@@ -22,24 +24,23 @@
 
 {{--@if(auth()->user()->id == $post->user_id)--}}
 <div class="md-3">
-    @can('update',$post)
-    <a href="{{route('posts.edit', ['post'=>$post->id])}}" class="btn btn-primary">Edit</a>
-    @endcan
 
-    @cannot('delete',$post)
-      <p>You cant delete this  post</p>
-    @endcannot
-
-
-        @if(!$post->trashed())
-            @can('delete',$post)
-                <form class="d-inline" method="POST" action="{{route('posts.destroy', ['post'=>$post->id])}}">
-                    @csrf
-                    @method('DELETE')
-                    <input type="submit" class="btn btn-primary" value="Delete">
-                </form>
+        @auth
+            @can('update',$post)
+                <a href="{{route('posts.edit', ['post'=>$post->id])}}" class="btn btn-primary">Edit</a>
             @endcan
-         @endif
+
+
+            @if(!$post->trashed())
+                @can('delete',$post)
+                    <form class="d-inline" method="POST" action="{{route('posts.destroy', ['post'=>$post->id])}}">
+                        @csrf
+                        @method('DELETE')
+                        <input type="submit" class="btn btn-primary" value="Delete">
+                    </form>
+                @endcan
+             @endif
+        @endauth
 
 
 </div>
