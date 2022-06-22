@@ -6,13 +6,8 @@
 
 <div class="form-group">
     <label for="content">Content</label>
-    <textarea class="form-control" id="content" name="content" id="" cols="30" rows="10">{{old('content', optional($post ?? null)->content)}}</textarea>
+    <textarea class="form-control" id="content" name="content"  cols="30" rows="10">{{old('content', optional($post ?? null)->content)}}</textarea>
 </div>
 
-@if($errors->any())
+@errors @enderrors
 
-            @foreach($errors->all() as $error)
-               <div class="alert alert-danger">{{$error}}</div>
-            @endforeach
-
-@endif

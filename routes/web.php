@@ -35,20 +35,6 @@ Route::get('/posts/tag/{id}',  'PostTagController@index')->name('posts.tags.inde
 })->whereAlpha('post');*/
 
 
-$posts = [
-    1=>[
-        'title'=>'Post1',
-        'is_new'=>true,
-        'has_comments'=>true
-    ],
-    2=>[
-        'title'=>'Post2',
-        'is_new'=>false
-    ]
-];
-
-
-
 /*Route::get('posts/{id}', function ($id) use ($posts){
 
     abort_if(!isset($posts[$id]), 404);
@@ -87,6 +73,7 @@ Route::get('/posts', function () use ($posts){
 
 Route::resource('posts','PostsController');
 
+Route::resource('posts.comments','PostCommentController')->only('store');
 
 
 

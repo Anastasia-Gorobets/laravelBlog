@@ -6,6 +6,6 @@
     <form action="{{ route('posts.store') }}" method="POST">
 
         @include('posts.partials.form')
-        <div><input class="btn btn-primary btn-block" type="submit" value="Create"></div>
+        <div class="form-group"><input class="btn btn-primary btn-block" type="submit" value="Create"></div>
     </form>
 @endsection
