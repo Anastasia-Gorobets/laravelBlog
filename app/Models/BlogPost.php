@@ -41,6 +41,12 @@ class BlogPost extends Model
 
     }
 
+    public function scopeLatestWithRelations(Builder $query)
+    {
+        return $query->latestPosts()->withCount('comments')->with('user')->with('tags');
+
+    }
+
     public function scopeMostCommented(Builder $query)
     {
         //comments_count

@@ -10,6 +10,6 @@ class PostTagController extends Controller
     public function index($tagId)
     {
         $tag = Tag::findOrFail($tagId);
-        return view('posts.index', ['posts'=>$tag->blogPosts]);
+        return view('posts.index', ['posts'=>$tag->blogPosts()->latestWithRelations()->get()]);
     }
 }

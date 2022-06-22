@@ -32,7 +32,7 @@ class PostsController extends Controller
     public function index()
     {
         return view("posts.index", [
-            'posts'=>BlogPost::latestPosts()->withCount('comments')->with('user')->with('tags')->get()
+            'posts'=>BlogPost::latestWithRelations()->get()
         ]);
     }
 
@@ -91,7 +91,8 @@ class PostsController extends Controller
 
 
         $blogPost = Cache::tags(['blog-post'])->remember("blog-post-{$id}", 60, function() use($id) {
-            return BlogPost::with('comments')->with('user')->with('tags')->findOrFail($id);
+            return BlogPost::with('comments','user','tags','comments.user')
+                ->findOrFail($id);
         });
 
         $sessionId = session()->getId();
