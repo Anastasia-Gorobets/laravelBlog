@@ -75,6 +75,8 @@ Route::resource('posts','PostsController');
 
 Route::resource('posts.comments','PostCommentController')->only('store');
 
+Route::resource('users','UserController');
+
 
 
 /*Route::get('/test/{id?}', function ($id = 0) {

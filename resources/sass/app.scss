@@ -7,37 +7,12 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-.badge{
-    padding: 5px 10px;
-    font-size: 12.025px;
-    font-weight: bold;
-    white-space: nowrap;
-    background-color: #999999;
-    border-radius: 1px;
-    text-decoration: none;
-    color: #fff;
-}
-
-
-.badge:hover{
-    text-decoration: none;
-    color: #fff;
-}
-.badge-lg{
-    font-size: 1.0rem;
-}
-
-.badge-success {
-    background-color: #468847;
-}
-
-a{
-    text-decoration: none;
-}
 
 .form-group{
     margin-top: 1rem;
 }
-.alert{
-    margin-top: 1rem;
+
+.avatar{
+    height: 128px;
+    width: 128px;
 }

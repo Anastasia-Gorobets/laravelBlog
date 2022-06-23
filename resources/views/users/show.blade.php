@@ -2,11 +2,12 @@
 
 @section('content')
 
+
         <div class="row">
 
             <div class="col-4">
 
-                <img src="" class="img-thumbnail avatar">
+                @avatar(['user'=>$user]) @endavatar
 
             </div>
 
@@ -15,13 +16,9 @@
                 <h3>{{$user->name}}</h3>
 
 
-
             </div>
 
         </div>
-
-
-
 
 
 @endsection
