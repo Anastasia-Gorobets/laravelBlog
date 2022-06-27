@@ -9,18 +9,18 @@ use Tests\TestCase;
 class HomeTest extends TestCase
 {
 
-    public function testHomePage()
+   /* public function testHomePage()
     {
         $response = $this->get('/');
         $response->assertSeeText('Blog header');
         $response->assertSeeText('First');
 
-    }
-    public function testContact()
+    }*/
+ /*   public function testContact()
     {
         $response = $this->get('/contact');
         $response->assertSeeText('Contact');
         $response->assertSeeText('Contact');
 
-    }
+    }*/
 }

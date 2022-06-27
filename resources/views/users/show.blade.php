@@ -15,6 +15,12 @@
 
                 <h3>{{$user->name}}</h3>
 
+                @commentForm(['route'=>route('users.comments.store', ['user'=>$user->id])])
+                @endcommentForm
+
+                @commentsList(['comments'=>$user->commentsOn])
+                @endcommentsList
+
 
             </div>
 
