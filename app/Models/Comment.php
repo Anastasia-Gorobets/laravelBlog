@@ -32,7 +32,7 @@ class Comment extends Model
 
     public function commentable()
     {
-        $this->morphTo();
+        return $this->morphTo();
     }
 
     public function scopeLatestComments(Builder $query)

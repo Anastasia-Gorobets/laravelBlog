@@ -152,4 +152,7 @@ Route::get('/test', function (){
 
 Auth::routes();
 
-/*Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');*/
+Route::get('mailable', function (){
+    $comment = \App\Models\Comment::find(1);
+    return new \App\Mail\CommentPostedMarkDown($comment);
+});
