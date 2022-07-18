@@ -96,5 +96,13 @@ class User extends Authenticatable
 
     }
 
+    public function scopeThatHasCommentedOnPost(Builder $query,BlogPost $blogPost)
+    {
+        return $query->whereHas('comments',function ($query) use ($blogPost){
+            return $query->where('commentable_id', '=', $blogPost->id)->where('commentable_type', '=', BlogPost::class);
+        });
+
+    }
+
 
 }
