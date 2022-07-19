@@ -2,19 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\BlogPostPosted;
 use App\Models\BlogPost;
 use App\Http\Requests\StorePost;
-use App\Models\Comment;
 use App\Models\Image;
-use App\Models\Tag;
-use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
-
-//use Illuminate\Support\Facades\DB;
 
 class PostsController extends Controller
 {
@@ -82,6 +75,8 @@ class PostsController extends Controller
             $path = $request->file('thubnail')->store('thubnails');
             $post->image()->save(Image::make(['path'=>$path]));
         }
+
+        event(new BlogPostPosted($post));
 
 
         $request->session()->flash('status','Blog post was created');
