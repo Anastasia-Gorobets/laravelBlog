@@ -3,7 +3,15 @@
 @section('title','All posts')
 
 @section('content')
-        <div class="row">
+
+   <div class="row mt-2">
+       <div  class="col">
+           {{ $posts->links() }}
+       </div>
+   </div>
+
+
+    <div class="row">
 
             <div class="col-8">
                 @forelse($posts as $key => $post)
@@ -18,5 +26,8 @@
             </div>
 
     </div>
+
+
+
 
 @endsection

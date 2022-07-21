@@ -27,8 +27,11 @@ class PostsController extends Controller
      */
     public function index()
     {
+       // dd(BlogPost::latestWithRelations()->get());
+
+
         return view("posts.index", [
-            'posts'=>BlogPost::latestWithRelations()->get()
+            'posts'=>BlogPost::latestWithRelations()->paginate(5)
         ]);
     }
 
@@ -103,7 +106,7 @@ class PostsController extends Controller
 
 
 
-        $counter = new Counter();
+        $counter = resolve(Counter::class);
 
 
         return view('posts.show', [
