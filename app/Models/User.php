@@ -44,6 +44,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public const LOCALES = [
+        'en'=>'English',
+        'es'=>'Spain',
+        'de'=>'German'
+    ];
+
     public function blogPosts()
     {
         return $this->hasMany(BlogPost::class);

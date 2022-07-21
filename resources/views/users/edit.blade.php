@@ -37,6 +37,19 @@
 
                 </div>
 
+
+                <div class="form-group">
+
+                    <label for="title">Locale:</label>
+
+                    <select class="form-control" name="locale">
+                        @foreach($user::LOCALES as $key=> $local)
+                            <option {{$user->locale == $key ? "selected": ""}} value="{{$key}}">{{$local}}</option>
+                        @endforeach
+                    </select>
+
+                </div>
+
                 <div class="form-group">
 
                     <button class="btn btn-primary" type="submit">Save changes</button>

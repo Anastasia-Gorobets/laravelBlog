@@ -45,7 +45,7 @@
                         <!-- Authentication Links -->
 
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('posts.index') }}">Blog posts</a>
+                            <a class="nav-link" href="{{ route('posts.index') }}">{{__('Blog Posts')}}</a>
                         </li>
 
 
@@ -53,18 +53,18 @@
 
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">Login</a>
+                                    <a class="nav-link" href="{{ route('login') }}">{{__('Login')}}</a>
                                 </li>
                             @endif
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">Register</a>
+                                    <a class="nav-link" href="{{ route('register') }}">{{__('Register')}}</a>
                                 </li>
                             @endif
                         @else
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('posts.create') }}">Add post</a>
+                                <a class="nav-link" href="{{ route('posts.create') }}">{{__('Add')}}</a>
                             </li>
 
 
@@ -74,22 +74,24 @@
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-                                    <li><a class="dropdown-item" href="{{route('users.show',['user'=>Auth::user()->id])}}">View Profile</a></li>
+                                 <li><a class="dropdown-item" href="{{route('users.show',['user'=>Auth::user()->id])}}">{{__('Profile')}}</a></li>
 
 
                                     <li>
+
                                         <a class="dropdown-item" href="{{ route('logout') }}"
                                            onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                             {{ __('Logout') }}
                                         </a>
 
+
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                             @csrf
                                         </form>
                                     </li>
 
-                                    <li><a class="dropdown-item" href="{{route('users.edit',['user'=>Auth::user()->id])}}">Edit profile</a></li>
+                                    <li><a class="dropdown-item" href="{{route('users.edit',['user'=>Auth::user()->id])}}">{{__('Edit profile')}}</a></li>
                                 </ul>
                             </li>
                         @endguest

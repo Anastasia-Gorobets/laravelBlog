@@ -69,7 +69,6 @@ class UserController extends Controller
     public function edit(User $user)
     {
         return view('users.edit',['user'=>$user]);
-
     }
 
     /**
@@ -91,6 +90,10 @@ class UserController extends Controller
                 $user->image()->save(Image::make(['path'=>$path]));
             }
         }
+
+
+        $user->locale = $request->input('locale');
+        $user->save();
 
 
         return redirect()->route('users.show',['user'=>$user]);

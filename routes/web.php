@@ -145,9 +145,6 @@ Route::get('/home', [HomeController::class, 'home']);
     return view("contact");
 })->name('contact');*/
 
-Route::get('/test', function (){
-    return view('test');
-});
 
 
 Auth::routes();
@@ -156,3 +153,6 @@ Route::get('mailable', function (){
     $comment = \App\Models\Comment::find(1);
     return new \App\Mail\CommentPostedMarkDown($comment);
 });
+
+
+
