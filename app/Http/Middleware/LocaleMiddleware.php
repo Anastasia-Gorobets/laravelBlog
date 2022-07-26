@@ -22,7 +22,6 @@ class LocaleMiddleware
 
         if (Auth::check() && !Session::has('locale')) {
             $locale = $request->user()->locale;
-            echo "flag1";
             Session::put('locale', $locale);
         }
 

@@ -21,6 +21,8 @@ class Comment extends Model
         'content'
     ];
 
+    protected $hidden = ['commentable_type','commentable_id', 'deleted_at', 'user_id'];
+
     /**
      * Get the blog post that owns the comment.
      */
