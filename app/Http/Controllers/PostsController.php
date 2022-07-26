@@ -3,21 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Events\BlogPostPosted;
+use App\Facades\CounterFacade;
 use App\Models\BlogPost;
 use App\Http\Requests\StorePost;
 use App\Models\Image;
-use App\Services\Counter;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 
 class PostsController extends Controller
 {
 
-
     public function __construct()
     {
         $this->middleware('auth')->only(['create','store','edit','update','destroy']);
-
     }
 
     /**
@@ -103,13 +101,14 @@ class PostsController extends Controller
         });
 
 
+       // dd($this->counter);
 
-        $counter = resolve(Counter::class);
+        //$counter = resolve(Counter::class);
 
 
         return view('posts.show', [
             'post' => $blogPost,
-            'counter' => $counter->increment("blog-post-{$id}",['blog-post']),
+            'counter' => CounterFacade::increment("blog-post-{$id}",['blog-post']),
         ]);
 
 

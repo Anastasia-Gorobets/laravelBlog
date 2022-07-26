@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UpdateUser;
 use App\Models\Image;
 use App\Models\User;
+use App\Services\Counter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
@@ -12,10 +13,13 @@ use Illuminate\View\View;
 class UserController extends Controller
 {
 
+
+
     public function __construct()
     {
         $this->middleware('auth');
         $this->authorizeResource(User::class,'user');
+
     }
 
     /**
